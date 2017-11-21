@@ -10,7 +10,7 @@ Travis CI                      | Trusty  |     Cloud    | [![Build Status](https
 
 ### features
 
-* feature 1
+* Creating a .NET solution using the .NET Command Line Interface (CLI), including a solution, Web API and XUnit Web Api test project
 * feature 2
 
 ## Contributing
