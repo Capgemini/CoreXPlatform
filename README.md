@@ -1,4 +1,4 @@
-# dockerfiles
+# .NET Core Cross Platform Reference
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A repository containing an example of a cross platform .NET Core application
