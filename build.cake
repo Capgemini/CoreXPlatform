@@ -72,6 +72,14 @@ Task("Test")
         }
     });
 
+Task("BuildContainer")
+    .IsDependentOn("Test")
+    .Does(() =>
+    {
+        
+
+    });
+
 // The default task to run if none is explicitly specified. In this case, we want
 // to run everything starting from Clean, all the way up to Pack.
 Task("Default")
