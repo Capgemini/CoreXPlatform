@@ -22,7 +22,13 @@ namespace CoreXPlatform.API.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            _logger.LogInformation("Start Get...");
+
+            var values = new string[] { "value1", "value2" };
+
+            _logger.LogInformation("End Get...");
+
+            return values;
         }
 
         // GET api/values/5
