@@ -6,7 +6,7 @@ A repository containing an example of a cross platform .NET Core application
 Build System                   | Host    | Build Agent  | Status
 -------------------------------|---------|--------------|-------------------------
 AppVeyor                       | Windows |     Cloud    | [![Build status](https://ci.appveyor.com/api/projects/status/4ucnitl22ihqx4eu/branch/master?svg=true)](https://ci.appveyor.com/project/jsacapdev/corexplatform/branch/master)
-Travis CI                      | Trusty  |     Cloud    | [![Build Status](https://travis-ci.org/Capgemini/dockerfiles.svg?branch=master)](https://travis-ci.org/Capgemini/dockerfiles)
+Travis CI                      | Trusty  |     Cloud    | [![Build Status](https://travis-ci.org/Capgemini/CoreXPlatform.svg?branch=master)](https://travis-ci.org/Capgemini/CoreXPlatform)
 
 ### features
 
