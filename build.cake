@@ -1,3 +1,5 @@
+#addin nuget:?package=Cake.Docker
+
 // Target - The task you want to start. Runs the Default task if not specified.
 var target = Argument("Target", "Default");
 
@@ -16,11 +18,11 @@ var configuration =
 // 4. Otherwise if an Environment variable exists, use that.
 // 5. Otherwise default the build number to 0.
 var buildNumber =
-    HasArgument("BuildNumber") ? Argument<int>("BuildNumber") :
-    AppVeyor.IsRunningOnAppVeyor ? AppVeyor.Environment.Build.Number :
-    TravisCI.IsRunningOnTravisCI ? TravisCI.Environment.Build.BuildNumber :
-    EnvironmentVariable("BuildNumber") != null ? int.Parse(EnvironmentVariable("BuildNumber")) : 0;
- 
+    HasArgument("BuildNumber") ? Argument<string>("BuildNumber") :
+    AppVeyor.IsRunningOnAppVeyor ? AppVeyor.Environment.Build.Number.ToString() : TravisCI.Environment.Build.BuildNumber.ToString();
+
+var dockerFile = AppVeyor.IsRunningOnAppVeyor ? "Dockerfile.windows" : "Dockerfile";
+
 // A directory path to an Artifacts directory.
 var artifactsDirectory = Directory("./Artifacts");
 var absoluteArtifactsDirectory = MakeAbsolute(Directory(artifactsDirectory));
@@ -76,14 +78,19 @@ Task("BuildContainer")
     .IsDependentOn("Test")
     .Does(() =>
     {
+        var settings = new DockerImageBuildSettings 
+        { 
+            Tag = new[] { $"dockerapp:{buildNumber}" },
+            File = dockerFile
+        };
         
-
+        DockerBuild(settings, ".");
     });
 
 // The default task to run if none is explicitly specified. In this case, we want
 // to run everything starting from Clean, all the way up to Pack.
 Task("Default")
-    .IsDependentOn("Test");
+    .IsDependentOn("BuildContainer");
  
 // Executes the task specified in the target argument.
 RunTarget(target);

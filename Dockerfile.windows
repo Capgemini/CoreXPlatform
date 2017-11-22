@@ -1,0 +1,8 @@
+FROM microsoft/dotnet:2.0.3-sdk-nanoserver-sac2016 as build-env
+
+WORKDIR /app
+
+COPY ./src/CoreXPlatform.API/*.csproj ./src/CoreXPlatform.API/
+
+RUN dotnet restore ./src/CoreXPlatform.API/CoreXPlatform.API.csproj
+
