@@ -4,8 +4,8 @@ var configuration = Argument("Configuration", "Release");
 
 var solution = "./CoreXPlatform.sln";
 
-var dockerTag =
-    HasArgument("DockerTag") ? Argument<string>("DockerTag") :
+var buildNumber =
+    HasArgument("BuildNumber") ? Argument<string>("BuildNumber") :
     AppVeyor.IsRunningOnAppVeyor ? AppVeyor.Environment.Build.Number.ToString() : TravisCI.Environment.Build.BuildNumber.ToString();
 
 var dockerFile = 
@@ -37,20 +37,18 @@ Task("Test")
 
         foreach(var project in projects)
         {
-            // string projectTestResults = $"{absoluteArtifactsDirectory}/{project.GetFilenameWithoutExtension()}.xml";
+            string projectTestResults = $"{artifactsDirectory}/{project.GetFilenameWithoutExtension()}-{buildNumber}.xml";
 
-            // DotNetCoreTest(project.GetDirectory().FullPath, new DotNetCoreTestSettings()
-            // {
-            //     Configuration = configuration,
-            //     NoBuild = true,
-            //     Logger = $"trx%3bLogFileName={projectTestResults}",
-            //     Framework = "netcoreapp2.0"
-            // });
+            DotNetCoreTool(
+                projectPath: project.FullPath, 
+                command: "xunit", 
+                arguments: $"-configuration {configuration} -diagnostics -stoponfail --fx-version 2.0.0 -xml {projectTestResults}"
+            );
 
-            // if(AppVeyor.IsRunningOnAppVeyor)
-            // {
-            //     AppVeyor.UploadTestResults(projectTestResults, AppVeyorTestResultsType.XUnit);
-            // }
+            if(AppVeyor.IsRunningOnAppVeyor)
+            {
+                AppVeyor.UploadTestResults(projectTestResults, AppVeyorTestResultsType.XUnit);
+            }
         }
     });
 
@@ -60,7 +58,7 @@ Task("BuildContainer")
     {
         var settings = new DockerImageBuildSettings 
         { 
-            Tag = new[] { $"dockerapp:{dockerTag}" },
+            Tag = new[] { $"dockerapp:{buildNumber}" },
             File = dockerFile
         };
         

@@ -15,8 +15,8 @@ Travis CI                      | Trusty  |     Cloud    | [![Build Status](https
 
 ### Eating Cake locally
 
-./build.ps1 --DockerTag="1" --DockerFile="Dockerfile.windows"
-./build.sh --DockerTag="1"
+./build.ps1 --BuildNumber="1" --DockerFile="Dockerfile.windows"
+./build.sh --BuildNumber="1"
 
 ## Contributing
 
