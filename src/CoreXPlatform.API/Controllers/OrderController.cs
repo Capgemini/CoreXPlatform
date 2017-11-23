@@ -29,21 +29,15 @@
         ///     Gets all orders
         /// </summary>
         /// <returns></returns>
-        // [HttpGet]
-        // public IActionResult GetAllOrders()
-        // {
-        //     var result = new List<Order>
-        //     {
-        //         new Order{ Id = 1, Reference = Guid.NewGuid().ToString() }
-        //     };
-
-        //     return Ok(result);
-        // }
-
         [HttpGet]
-        public IEnumerable<string> GetAllOrders()
+        public IActionResult GetAllOrders()
         {
-           return new string[]{};
+            var result = new List<Order>
+            {
+                new Order{ Id = 1, Reference = Guid.NewGuid().ToString() }
+            };
+
+            return Ok(result);
         }
     }
 }
