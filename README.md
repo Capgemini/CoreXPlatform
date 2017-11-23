@@ -13,6 +13,10 @@ Travis CI                      | Trusty  |     Cloud    | [![Build Status](https
 * Creating a .NET solution using the .NET Command Line Interface (CLI), including a solution, Web API and XUnit Web Api test project
 * feature 2
 
+### Eating Cake locally
+
+.\build.ps1 --DockerTag="1" --DockerFile="Dockerfile.windows"
+
 ## Contributing
 
 * Fork it!
