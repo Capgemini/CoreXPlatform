@@ -20,7 +20,7 @@ namespace CoreXPlatform.API.Tests
         }
 
         [Fact]
-        public void ValuesController_Get_Ok()
+        public void OrderController_GetAllOrders_Ok()
         {
             var controller = new OrderController(new Mock<ILogger<OrderController>>().Object);
 
