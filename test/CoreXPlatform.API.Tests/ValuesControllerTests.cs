@@ -9,6 +9,13 @@ namespace CoreXPlatform.API.Tests
 
     public class ValuesControllerTests
     {
+        [Theory]
+        [MemberData(nameof(ConstructorFailureData))]
+        public void Constructor_Fails_With_Null_Arguments(ILogger<ValuesController> logger)
+        {
+            Assert.Throws<ArgumentNullException>(() => new ValuesController(logger));
+        }
+
         [Fact]
         public void ValuesController_Get_Ok()
         {
@@ -20,5 +27,11 @@ namespace CoreXPlatform.API.Tests
 
             Assert.Equal(2, result.Count());
         }
+
+        public static TheoryData<ILogger<ValuesController>> ConstructorFailureData => 
+            new TheoryData<ILogger<ValuesController>> 
+        {
+            { null }
+        };
     }
 }
