@@ -6,15 +6,14 @@ dist: trusty
 services:
 - docker
 
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y dotnet-sdk-2.0.3
+
 addons:
   apt:
-    sources:
-    - sourceline: 'deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main'
-      key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
     packages:
       - docker-ce
-      - dotnet-runtime-2.0.3
-      - dotnet-sdk-2.0.3
 
 script:
 - bash ./build.sh
