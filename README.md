@@ -11,7 +11,10 @@ Travis CI                      | Trusty  |     Cloud    | [![Build Status](https
 ### features
 
 * Creating a .NET solution using the .NET Command Line Interface (CLI), including a solution, Web API and XUnit Web Api test project
-* feature 2
+* Cross platform build scripts using Cake 
+* Cross platform CI support using Travis CI and AppVeyor (see above)
+* Docker support for Linux and Windows Images, using Multi-Stage builds
+* Strongly typed Theory Data for XUnit tests
 
 ### Eating Cake locally
 
@@ -28,6 +31,9 @@ Travis CI                      | Trusty  |     Cloud    | [![Build Status](https
 * Submit a pull request :D
 
 ## Credits
+
+* https://andrewlock.net/creating-strongly-typed-xunit-theory-test-data-with-theorydata/
+* https://andrewlock.net/running-tests-with-dotnet-xunit-using-cake/
 
 [License Badges](https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba)
 
