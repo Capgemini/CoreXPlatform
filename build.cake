@@ -70,7 +70,7 @@ Task("BuildContainer")
         {
             Information($"Build Tagged with tag {commitTag}, starting publish of docker image to registry.");
 
-            settings.Tag new[] { $"dockerapp:{commitTag}" };
+            settings.Tag = new[] { $"dockerapp:{commitTag}" };
 
             DockerBuild(settings, ".");
         }
