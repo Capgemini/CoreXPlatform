@@ -13,6 +13,10 @@ var dockerFile =
     AppVeyor.IsRunningOnAppVeyor ? "Dockerfile.windows" : "Dockerfile";
 
 var artifactsDirectory = MakeAbsolute(Directory("./Artifacts"));
+
+var commitTag =
+    AppVeyor.IsRunningOnAppVeyor ? AppVeyor.Environment.Repository.Tag.Name :
+    TravisCI.IsRunningOnTravisCI ? TravisCI.Environment.Build.Tag : null;
  
 Task("Build")
     .Does(() =>
@@ -61,6 +65,19 @@ Task("BuildContainer")
         };
         
         DockerBuild(settings, ".");
+
+        if (!string.IsNullOrWhiteSpace(commitTag))
+        {
+            Information($"Build Tagged with tag {commitTag}, starting publish of docker image to registry.");
+
+            settings.Tag new[] { $"dockerapp:{commitTag}" };
+
+            DockerBuild(settings, ".");
+        }
+        else
+        {
+            Information("No tag found, ignoring publish.");
+        }
     });
 
 RunTarget("BuildContainer");
