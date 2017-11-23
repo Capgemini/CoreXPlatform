@@ -25,7 +25,7 @@ namespace CoreXPlatform.API.Tests
 
             Assert.NotNull(result);
 
-            Assert.Equal(1, result.Count());
+            Assert.Single(result);
         }
 
         public static TheoryData<ILogger<ValuesController>> ConstructorFailureData => 
