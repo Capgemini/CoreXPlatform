@@ -1,7 +1,7 @@
 # .NET Core Cross Platform Demonstrator
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A cross platform Web API written in .NET Core using the [.NET Core SDK](https://www.microsoft.com/net/download/). This can be used as a reference solution for an application that can run on multiple operating systems including Windows, Linux and MacOS. It contains a .NET Core solution created using the .NET Command Line Interface (CLI) that builds and runs in Visual Studio Code. The solution contains a .NET Core Web API project and a associated a XUnit test project. Other feature include:
+A cross platform Web API written in .NET Core using the [.NET Core SDK](https://www.microsoft.com/net/download/). This can be used as a reference solution for an application that runs on multiple operating systems including Windows, Linux and MacOS. The solution has been created using the .NET Command Line Interface (CLI) that builds and runs in [Visual Studio Code](https://code.visualstudio.com/download). The solution contains a .NET Core Web API project and a associated a XUnit test project. Other feature include:
 
 * Cross platform build scripts using Cake 
 * Cross platform CI support using Travis CI and AppVeyor (see above)
